@@ -1,9 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   ActivityIndicatorIOS,
-  Component,
   Image,
   StyleSheet,
   Text,
