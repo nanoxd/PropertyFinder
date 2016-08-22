@@ -11,6 +11,24 @@ import {
   View
 } from 'react-native';
 
+function urlForQueryAndPage(key, value, pageNumber) {
+  var data = {
+      country: 'uk',
+      pretty: '1',
+      encoding: 'json',
+      listing_type: 'buy',
+      action: 'search_listings',
+      page: pageNumber
+  };
+  data[key] = value;
+
+  var querystring = Object.keys(data)
+    .map(key => key + '=' + encodeURIComponent(data[key]))
+    .join('&');
+
+  return 'http://api.nestoria.co.uk/api?' + querystring;
+};
+
 const styles = StyleSheet.create({
   description: {
     marginBottom: 20,
@@ -81,6 +99,12 @@ class SearchPage extends Component {
     console.log(query);
     this.setState({ isLoading: true });
   }
+
+  onSearchPressed() {
+    const query = urlForQueryAndPage('place_name', this.state.searchString, 1);
+    this._executeQuery(query);
+  }
+
   render() {
     const spinner = this.state.isLoading ? ( <ActivityIndicator size='large' /> ) : ( <View/> );
     console.log('SearchPage.render');
@@ -103,7 +127,10 @@ class SearchPage extends Component {
           style={styles.button}
           underlayColor='#99d9f4'
         >
-          <Text style={styles.buttonText}>
+          <Text
+            style={styles.buttonText}
+            onPress={this.onSearchPressed.bind(this)}
+          >
             Go
           </Text>
         </TouchableHighlight>
