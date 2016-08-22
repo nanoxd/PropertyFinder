@@ -11,6 +11,8 @@ import {
   View
 } from 'react-native';
 
+const SearchResults = require('./SearchResults');
+
 function urlForQueryAndPage(key, value, pageNumber) {
   var data = {
       country: 'uk',
@@ -172,7 +174,13 @@ class SearchPage extends Component {
     });
 
     if (response.application_response_code.substr(0, 1) === '1') {
-      console.log('Properties found: ' + response.listings.length);
+      this.props.navigator.push({
+        title: 'Results',
+        component: SearchResults,
+        passProps: {
+          listings: response.listings,
+        },
+      });
     } else {
       this.setState({
         message: 'Location not recognized; please try again.',
