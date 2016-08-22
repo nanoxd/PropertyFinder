@@ -66,6 +66,7 @@ class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
       searchString: 'london',
     }
   }
@@ -76,7 +77,12 @@ class SearchPage extends Component {
     console.log(this.state.searchString);
   }
 
+  _executeQuery(query) {
+    console.log(query);
+    this.setState({ isLoading: true });
+  }
   render() {
+    const spinner = this.state.isLoading ? ( <ActivityIndicatorIOS size='large' /> ) : ( <View/> );
     console.log('SearchPage.render');
     return(
       <View style={styles.container}>
@@ -114,6 +120,7 @@ class SearchPage extends Component {
         source={require('./Resources/house.png')}
         style={styles.image}
       />
+      {spinner}
       </View>
     );
   }
