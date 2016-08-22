@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import {
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   Image,
   StyleSheet,
   Text,
@@ -82,7 +82,7 @@ class SearchPage extends Component {
     this.setState({ isLoading: true });
   }
   render() {
-    const spinner = this.state.isLoading ? ( <ActivityIndicatorIOS size='large' /> ) : ( <View/> );
+    const spinner = this.state.isLoading ? ( <ActivityIndicator size='large' /> ) : ( <View/> );
     console.log('SearchPage.render');
     return(
       <View style={styles.container}>
