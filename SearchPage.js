@@ -85,6 +85,7 @@ class SearchPage extends Component {
     super(props);
     this.state = {
       isLoading: false,
+      message: '',
       searchString: 'london',
     }
   }
@@ -147,7 +148,10 @@ class SearchPage extends Component {
         source={require('./Resources/house.png')}
         style={styles.image}
       />
-      {spinner}
+        {spinner}
+        <Text style={styles.description}>
+          {this.state.message}
+        </Text>
       </View>
     );
   }
