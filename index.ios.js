@@ -15,17 +15,7 @@ import {
   View
 } from 'react-native';
 
-class HelloWorld extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          Welcome to React Native (Again)!
-        </Text>
-      </View>
-    );
-  }
-}
+const SearchPage = require('./SearchPage');
 
 class PropertyFinder extends Component {
   render() {
@@ -34,7 +24,7 @@ class PropertyFinder extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Property Finder',
-          component: HelloWorld,
+          component: SearchPage,
         }}
       />
     );
