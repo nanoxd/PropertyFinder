@@ -10,6 +10,8 @@ import {
   Text
 } from 'react-native';
 
+const PropertyView = require('./PropertyView')
+
 const styles = StyleSheet.create({
   thumb: {
     width: 80,
@@ -93,6 +95,12 @@ class SearchResults extends Component {
 
   rowPressed(propertyGuid) {
     const property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0]
+
+    this.props.navigator.push({
+      title: "Property",
+      component: PropertyView,
+      passProps: {property: property},
+    })
   }
 }
 
